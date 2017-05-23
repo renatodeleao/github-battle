@@ -1,3 +1,51 @@
+:root{
+	--systemFont:  -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+
+}
+
+*,
+*:before, *:after{
+	box-sizing: border-box;
+}
+
+html,body{
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
+
 body{
-	background: yellow;
+	font-family: var(--systemFont);
+}
+ul {
+	padding: 0;
+	margin: 0;
+}
+.o-app{
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 16px;
+}
+
+
+/*Tabs nav*/
+.c-nav{
+	display: flex;
+	list-style: none;
+	height: 56px;
+	align-items: center;
+	background-color: lightgray;
+}
+
+.c-nav__item{
+	margin: 0 8px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.c-nav__item:hover,
+.c-nav__item.is-active{
+	color: red;
 }

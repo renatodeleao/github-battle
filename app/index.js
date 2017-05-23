@@ -1,20 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+import App from './components/App';
 require('./index.css');
-
-// state
-// lifecycle
-// UI
-class App extends React.Component {
-
-	render(){
-		return(
-			<div>
-				Hello Renato Vietnamita! 
-			</div>
-		)
-	}
-}
 
 
 ReactDOM.render(
