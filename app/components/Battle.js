@@ -1,9 +1,37 @@
 import React from 'react';
-import Link from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Badge from './Badge';
 
 
+/*
+
+	"Private" COmponents
+-----------------------*/
+const PlayerPreview = (props) => {
+	const {
+		id,
+		img,
+		name,
+		username,
+		onReset
+	} = props;
+
+	return (
+		<div>
+			<Badge
+				img={img}
+				name={name}
+				username={username} />
+			<button
+				style={{display: 'block', margin: "0 auto"}}
+				className="c-button"
+				onClick={onReset.bind(null, id)}>
+				Reset
+			</button>
+		</div>
+	)
+}
 class PlayerInput extends React.Component {
 	constructor(props) {
 		super(props);
@@ -18,7 +46,7 @@ class PlayerInput extends React.Component {
 
 	handleSubmit(event){
 		event.preventDefault();
-		
+
 		this.props.onSubmit(
 			this.props.id, 
 			this.state.username
@@ -77,7 +105,10 @@ PlayerInput.propTypes = {
 
 
 
+/*
 
+	MAIN CLASS
+-----------------------*/
 export default class Battle extends React.Component {
 	constructor(props) {
 		super(props);
@@ -91,6 +122,7 @@ export default class Battle extends React.Component {
 		}
 
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleReset = this.handleReset.bind(this);
 	}
 
 
@@ -104,14 +136,28 @@ export default class Battle extends React.Component {
 			return newState;
 		})
 	}
+
+	handleReset(id){
+		console.log(id);
+		this.setState(function(){
+			var newState = {};
+
+			newState[id + 'Name'] = '';
+			newState[id + 'Img'] = null;
+
+			return newState;
+		})
+	}
+
+
 	render(){
 		var playerOneName = this.state.playerOneName;
 		var playerTwoName = this.state.playerTwoName;
 
 		return(
 			<div className="o-page">
-				<header>
-					<h1> Battle Page </h1>
+				<h1> Battle Page </h1>
+				<section className="o-section">
 					<div className="o-grid">
 						<div className="o-grid__el u-w-50@sm">
 							{!playerOneName 
@@ -119,10 +165,13 @@ export default class Battle extends React.Component {
 									id="playerOne"
 									label="Player One"
 									onSubmit={this.handleSubmit} />
-								: <Badge
+								: <PlayerPreview
+									id="playerOne"
 									img={this.state.playerOneImg}
 									name={this.state.playerOneName}
-									username={this.state.playerOneName} />
+									username={this.state.playerOneName} 
+									onReset={this.handleReset}
+									/>
 							}
 						</div>
 
@@ -132,17 +181,28 @@ export default class Battle extends React.Component {
 								id="playerTwo"
 								label="Player Two"
 								onSubmit={this.handleSubmit} />
-							: <Badge
-								img={this.state.playerTwoImg}
-								name={this.state.playerTwoName}
-								username={this.state.playerTwoName} />
+							: <PlayerPreview
+									id="playerTwo"
+									img={this.state.playerTwoImg}
+									name={this.state.playerTwoName}
+									username={this.state.playerTwoName} 
+									onReset={this.handleReset}
+									/>
 						}
 						</div>
 					</div>
 					{ (playerOneName && playerTwoName) &&
-						<p>asdad</p>
+					<div className="o-section u-txt-c">
+						<Link to={{
+							pathname: `${this.props.match.url}/results`,
+							search: `?playerOneName=${playerOneName}&playerTwoName=${playerTwoName}`
+						}} 
+							className="c-button c-button--cta c-button--primary">
+							BATTLE
+						</Link>
+					</div>
 					}
-				</header>
+				</section>
 			</div>
 		)
 	}

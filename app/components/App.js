@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './Home';
 import Battle from './Battle';
+import BattleResults from './BattleResults';
 import Popular from './Popular';
 import FourOFour from './FourOFour';
 import Navbar from './Navbar';
@@ -19,6 +20,7 @@ class App extends React.Component {
 					<Switch>
 						<Route exact path='/' component={Home} />
 						<Route exact path='/battle' component={Battle} />
+						<Route path='/battle/results' component={BattleResults} />
 						<Route path='/popular' component={Popular} />
 
 						<Route component={FourOFour}/>

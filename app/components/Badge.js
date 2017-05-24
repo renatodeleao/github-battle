@@ -14,7 +14,7 @@ class Badge extends React.Component {
 					style={{width: 100, height:100}}
 				/>
 				<h1 className="c-badge__name">{name}</h1>
-				<h3 className="c-badge__username">{username}</h3>
+				<h3 className="c-badge__username">@{username}</h3>
 			</div>
 		)
 	}

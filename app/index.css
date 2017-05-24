@@ -35,6 +35,9 @@ ul {
 }
 
 
+.o-section{
+	padding: 48px 0;
+}
 /* 
 	GRID
 ----------------------------------------------*/
@@ -303,3 +306,8 @@ ul {
 		color: gray;
 		font-weight: 400;
 	}
+
+
+.u-txt-c{
+	text-align: center;
+}
