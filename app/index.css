@@ -1,3 +1,4 @@
+@chartset 'utf-8';
 :root{
 	--systemFont:  -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
@@ -42,27 +43,31 @@ ul {
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
-	list-style:none;
-}
+	margin-left: -32px;
+}	
 
 	.o-grid__el {
 		width: 100%;
+		padding-left: 32px;
 	}
 
 	@media screen and (min-width: 480px){
-		.o-grid__el { width: 50%; }
+		.o-grid--gihub-cards .o-grid__el { width: 50%; }
 	}
 
 	@media screen and (min-width: 768px){
-		.o-grid__el { width: 33.3333%; }
+		.o-grid--gihub-cards .o-grid__el { width: 33.3333%; }
 	}
 
 	@media screen and (min-width: 1024px){
-		.o-grid__el { width: 25%; }
+		.o-grid--gihub-cards .o-grid__el { width: 25%; }
 	}			
 
 
-
+/* sizing utilities*/
+@media screen and (min-width: 480px){
+	.u-w-50\@sm { width: 50%; }
+}
 
 /*
 	AVATAR
@@ -80,15 +85,24 @@ ul {
 
 
 
+.o-form {
+	position: relative;
+}
 
+.o-form__block {
+	margin-bottom: 32px;
+}
 /*
-	AVATAR
+	Inputs
 ----------------------------------------------*/
 
+.c-input,
 .c-button{
 	-webkit-appearance:none;
 	-moz-appearance: none;
 	appearance: none;
+	border: none;
+	outline: none;
 
 	display: inline-block;
 	padding: 0 1rem;
@@ -97,6 +111,23 @@ ul {
 	text-decoration: none;
 }
 
+
+
+.c-input-group {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 32px;
+}
+
+
+/* TEXT INPUTS */
+.c-input--primary {
+	width: 100%;
+	height: 56px;
+	box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.12);
+}
+
+/* BUTTONS */
 .c-button--cta {
 	width: 100%;
 	height: 48px;
@@ -113,6 +144,12 @@ ul {
 		min-width: 200px;
 		max-width: 100%;
 	}
+}
+
+
+.c-button--secondary{
+	background-color: #444;
+	color: white;
 }
 
 
@@ -237,3 +274,32 @@ ul {
 .c-nav__item.is-active{
 	color: red;
 }
+
+.c-badge{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 24px 16px;
+	box-shadow: 0px 4px 8px rgba(0,0,0,0.12);
+}
+
+	.c-badge__img {
+		width: 160px;
+		height: 160px;
+		max-width: 100%;
+		margin-bottom: 24px;
+
+		border-radius: 50%;
+	}
+
+	.c-badge__name {
+		font-size: 20px;
+		margin-bottom: 8px;
+	}
+
+	.c-badge__username{
+		margin: 0;
+		font-size: 14px;
+		color: gray;
+		font-weight: 400;
+	}

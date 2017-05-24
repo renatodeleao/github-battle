@@ -80,7 +80,7 @@ GitHubRepoCard.propTypes = {
 
 const RepoGrid = (props) => {
 	return (
-		<ul className="o-grid">
+		<ul className="o-grid o-grid--github-cards">
 			{props.repos.map((repo, index) => {
 				return (
 					<li key={repo.name} className="o-grid__el">
