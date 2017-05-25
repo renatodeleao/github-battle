@@ -43,11 +43,11 @@ ul {
 ----------------------------------------------*/
 
 .o-grid {
+	list-style: none;
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
 	margin-left: -32px;
-	margin-top: 1200px;
 }	
 
 	.o-grid__el {
@@ -56,15 +56,15 @@ ul {
 	}
 
 	@media screen and (min-width: 480px){
-		.o-grid--gihub-cards .o-grid__el { width: 50%; }
+		.o-grid--github-cards .o-grid__el { width: 50%; }
 	}
 
 	@media screen and (min-width: 768px){
-		.o-grid--gihub-cards .o-grid__el { width: 33.3333%; }
+		.o-grid--github-cards .o-grid__el { width: 33.3333%; }
 	}
 
 	@media screen and (min-width: 1024px){
-		.o-grid--gihub-cards .o-grid__el { width: 25%; }
+		.o-grid--github-cards .o-grid__el { width: 25%; }
 	}			
 
 
