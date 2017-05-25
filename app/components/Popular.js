@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import api from '../utils/api';
+import * as scrollAnim from '../utils/scrollAnim';
 import Loader from './Loader';
 
 
@@ -78,25 +79,35 @@ GitHubRepoCard.propTypes = {
 }
 
 
-const RepoGrid = (props) => {
-	return (
-		<ul className="o-grid o-grid--github-cards">
-			{props.repos.map((repo, index) => {
-				return (
-					<li key={repo.name} className="o-grid__el">
-						<GitHubRepoCard
-							rank={index + 1}
-							ownerLogin={repo.owner.login}
-							ownerAvatarUrl={repo.owner.avatar_url}
-							repoName={repo.name}
-							repoUrl={repo.html_url}
-							stargazersCount={repo.stargazers_count}
-							/>
-					</li>
-				)
-			})}
-		</ul>
-	)
+class RepoGrid extends React.Component {
+	constructor(props) {
+		super(props);
+		
+	}
+	render(){
+		return (
+			<ul className="o-grid o-grid--github-cards">
+				{this.props.repos.map((repo, index) => {
+					return (
+						<li key={repo.name} className="o-grid__el">
+							<GitHubRepoCard
+								rank={index + 1}
+								ownerLogin={repo.owner.login}
+								ownerAvatarUrl={repo.owner.avatar_url}
+								repoName={repo.name}
+								repoUrl={repo.html_url}
+								stargazersCount={repo.stargazers_count}
+								/>
+						</li>
+					)
+				})}
+			</ul>
+		)
+	}
+
+	componentDidMount() {
+		scrollAnim.fadeDaShitOutOfAnElement('.o-grid', '.o-grid__el', 0);
+	}
 }
 
 RepoGrid.propTypes = {
@@ -115,11 +126,7 @@ class Popular extends React.Component{
 		this.updateLanguage = this.updateLanguage.bind(this);
 	}
 
-	// when rendered initialy without any click fetch the current state repos (all)
-	componentDidMount() {
-		this.updateLanguage(this.state.selectedLanguage);
-	}
-
+	
 	updateLanguage(lang) {
 		this.setState(function(){
 			return { 
@@ -154,6 +161,12 @@ class Popular extends React.Component{
 
 		)
 	}
+
+	// when rendered initialy without any click fetch the current state repos (all)
+	componentDidMount() {
+		this.updateLanguage(this.state.selectedLanguage);
+	}
+
 }
 
 export default Popular;
